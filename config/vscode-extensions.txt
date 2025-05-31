@@ -1,0 +1,8 @@
+esbenp.prettier-vscode
+dbaeumer.vscode-eslint
+ms-vsliveshare.vsliveshare
+eamodio.gitlens
+bierner.markdown-preview-github-styles
+formulahendry.auto-rename-tag
+formulahendry.auto-close-tag
+streetsidesoftware.code-spell-checker

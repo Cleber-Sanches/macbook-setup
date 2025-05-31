@@ -1,0 +1,141 @@
+
+# ================================================
+# CONFIGURAÇÃO PRINCIPAL DO PROMPT (format)
+# ================================================
+format = """
+
+ $hostname\
+$directory\
+$git_branch\
+$package\
+$c\
+$cmake\
+$crystal\
+$deno\
+$docker_context\
+$fennel\
+$fossil_branch\
+$golang\
+$haxe\
+$jobs\
+$kotlin\
+$lua\
+$hg_branch\
+$nodejs\
+$php\
+$python\
+$raku\
+$rust\
+$swift\
+$vlang\
+$zig\
+${custom.aws}\
+$spack\
+$terraform\
+${custom.gitstatus}
+\n
+$fill${custom.music}$memory_usage$battery
+$time 
+
+$character"""
+
+scan_timeout = 10
+add_newline = true
+
+[battery]
+disabled = false
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰁼 '
+
+[[battery.display]]
+threshold = 100
+style = "bold #54BA59"
+
+[[battery.display]]
+threshold = 80
+style = "bold #FAC531"
+
+[[battery.display]]
+threshold = 30
+style = "bold #EE2F06"
+
+[memory_usage]
+disabled = false
+style = "fg:#F04438 bold"
+threshold = 75
+format = '[RAM: ${ram_pct} ]($style)'
+
+[time]
+disabled = true
+format = '[  $time ]($style)'
+style = 'bg:#303030'
+
+[custom.music]
+command = "osascript -e 'tell app \"Music\" to get name of current track'"
+when = "[[ $(osascript -e 'application \"Music\" is running') == true && $(osascript -e 'tell application \"Music\" to playing = player state') == true ]]"
+shell = "sh"
+symbol = " "
+style = "#fa354f"
+format = "[$symbol($output )]($style)"
+os = "macos"
+
+[package]
+disabled = false
+symbol = " "
+style = "fg:#FF6633 bold"
+format = '[ $symbol$package($version) ]($style)'
+
+[custom.aws]
+command = "sh ~/.config/check-aws-profile.sh"
+when = "true"
+ignore_timeout = true
+format = "$output "
+style = " "
+
+[nodejs]
+disabled = false
+format = ' [$symbol($version )]($style)'
+symbol = ' '
+
+[git_branch]
+symbol = ' '
+disabled = false
+
+[custom.gitstatus]
+command = "bash ~/.config/starship-git-status.sh"
+when = "git rev-parse --is-inside-work-tree 2>/dev/null"
+format = "$output"
+style = ""
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "🏎️ 💨 ×${count}"
+behind = "🐢 ×${count}"
+diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
+untracked = " ${count} "
+stashed = "📦󰘸"
+modified = " ${count} "
+staged = "󰘸 ${count} "
+renamed = "📛 ×${count}"
+deleted = "🗑️  ×${count}"
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+[username]
+disabled = false
+show_always = true
+style_root = 'bold red'
+style_user = 'bold green'
+format = '[$user ]($style)'
+
+[fill]
+disabled = false
+symbol = '---'
+style = '#212121'
+
+[cmd_duration]
+show_milliseconds = false
+format = '⏲️ [$duration]($style)'
+show_notifications = true
+min_time_to_notify = 15
