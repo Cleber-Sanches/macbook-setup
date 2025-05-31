@@ -5,12 +5,7 @@ Guia completo para configurar automaticamente meu ambiente após formatação do
 ![GitHub forks](https://img.shields.io/github/forks/seu-usuario/macbook-setup?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/seu-usuario/macbook-setup)
 
-## 💻 Especificações da Máquina
 
-- MacBook Pro 14" (2024) - M4 Max, 48GB RAM, 1TB SSD
-- Fish Shell com Starship
-- Node.js + TypeScript + AWS CLI + Terraform
-- CLI Tools modernas + VS Code + Docker
 
 ## 🚀 Início Rápido
 
