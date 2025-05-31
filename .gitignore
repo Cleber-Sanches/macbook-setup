@@ -1,0 +1,13 @@
+# Ignorar diretório de backups
+backups/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de ambiente
+.env
+.env.local
+
+# Diretórios de dependências
+node_modules/
