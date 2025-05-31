@@ -14,6 +14,8 @@ show_menu() {
   echo "5) ☁️ Ferramentas AWS (AWS CLI, CDK, SAM, Amplify)"
   echo "6) 🔄 Backup das configurações atuais"
   echo "7) 🔙 Restaurar a partir de um backup"
+  echo "8) 🔄 Backup das configurações do n8n"
+  echo "9) 🔙 Restaurar configurações do n8n"
   echo ""
   echo "a) ✅ Instalar tudo"
   echo "q) ❌ Sair"
@@ -70,6 +72,96 @@ restore_configs() {
   ./scripts/restore.sh
 }
 
+# Função para fazer backup do n8n
+backup_n8n() {
+  echo "🔄 Fazendo backup das configurações do n8n..."
+  
+  # Definir diretório de backup
+  BACKUP_DIR="backups/n8n_$(date +%Y%m%d_%H%M%S)"
+  mkdir -p "$BACKUP_DIR"
+  
+  # Verificar se o diretório n8n existe
+  N8N_CONFIG_DIR="$HOME/.n8n"
+  if [ -d "$N8N_CONFIG_DIR" ]; then
+    echo "📁 Copiando configurações do n8n..."
+    cp -r "$N8N_CONFIG_DIR"/* "$BACKUP_DIR/"
+    echo "✅ Backup do n8n concluído em $BACKUP_DIR"
+  else
+    echo "⚠️ Diretório de configuração do n8n não encontrado em $N8N_CONFIG_DIR"
+    read -p "Deseja especificar outro caminho para o diretório do n8n? (s/n): " custom_path
+    if [ "$custom_path" = "s" ]; then
+      read -p "Digite o caminho completo para o diretório de configuração do n8n: " custom_n8n_dir
+      if [ -d "$custom_n8n_dir" ]; then
+        cp -r "$custom_n8n_dir"/* "$BACKUP_DIR/"
+        echo "✅ Backup do n8n concluído em $BACKUP_DIR"
+      else
+        echo "❌ Diretório não encontrado. Backup cancelado."
+      fi
+    fi
+  fi
+}
+
+# Função para restaurar configurações do n8n
+restore_n8n() {
+  echo "🔙 Restaurando configurações do n8n..."
+  
+  # Listar backups disponíveis
+  BACKUPS_DIR="backups"
+  if [ ! -d "$BACKUPS_DIR" ]; then
+    echo "❌ Nenhum diretório de backup encontrado."
+    return
+  fi
+  
+  # Filtrar apenas backups do n8n
+  N8N_BACKUPS=($(ls -1 "$BACKUPS_DIR" | grep "^n8n_"))
+  if [ ${#N8N_BACKUPS[@]} -eq 0 ]; then
+    echo "❌ Nenhum backup do n8n encontrado."
+    return
+  fi
+  
+  # Mostrar backups disponíveis
+  echo "📂 Backups do n8n disponíveis:"
+  for i in "${!N8N_BACKUPS[@]}"; do
+    echo "  $((i+1))) ${N8N_BACKUPS[$i]}"
+  done
+  
+  # Solicitar escolha do usuário
+  read -p "Escolha o número do backup para restaurar (ou 'q' para sair): " choice
+  
+  # Validar escolha
+  if [[ "$choice" == "q" ]]; then
+    echo "❌ Operação cancelada pelo usuário."
+    return
+  fi
+  
+  if ! [[ "$choice" =~ ^[0-9]+$ ]] || [ "$choice" -lt 1 ] || [ "$choice" -gt ${#N8N_BACKUPS[@]} ]; then
+    echo "❌ Escolha inválida."
+    return
+  fi
+  
+  # Definir diretório do backup escolhido
+  SELECTED_BACKUP="$BACKUPS_DIR/${N8N_BACKUPS[$((choice-1))]}"
+  
+  # Restaurar configurações
+  N8N_CONFIG_DIR="$HOME/.n8n"
+  read -p "Deseja restaurar para o diretório padrão ($N8N_CONFIG_DIR)? (s/n): " use_default
+  
+  if [ "$use_default" = "s" ]; then
+    mkdir -p "$N8N_CONFIG_DIR"
+    cp -r "$SELECTED_BACKUP"/* "$N8N_CONFIG_DIR/"
+    echo "✅ Configurações do n8n restauradas com sucesso para $N8N_CONFIG_DIR"
+  else
+    read -p "Digite o caminho completo para o diretório de destino: " custom_dir
+    if [ -n "$custom_dir" ]; then
+      mkdir -p "$custom_dir"
+      cp -r "$SELECTED_BACKUP"/* "$custom_dir/"
+      echo "✅ Configurações do n8n restauradas com sucesso para $custom_dir"
+    else
+      echo "❌ Caminho inválido. Restauração cancelada."
+    fi
+  fi
+}
+
 # Menu principal
 while true; do
   show_menu
@@ -83,6 +175,8 @@ while true; do
     5) setup_aws ;;
     6) backup_configs ;;
     7) restore_configs ;;
+    8) backup_n8n ;;
+    9) restore_n8n ;;
     a) 
       backup_configs
       install_homebrew
