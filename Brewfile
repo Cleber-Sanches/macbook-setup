@@ -71,6 +71,7 @@ cask "visual-studio-code"    # Editor de código da Microsoft
 cask "docker"                # Plataforma de containerização
 cask "beekeeper-studio"      # Cliente SQL e gerenciador de banco de dados
 cask "insomnia"              # Cliente para testes de API REST
+cask "apidog"                # 
 
 # Navegadores
 cask "arc"                   # Navegador moderno baseado em Chromium
@@ -88,7 +89,7 @@ cask "zoom"                  # Plataforma de videoconferência
 
 # Utilitários
 cask "swiftbar"              # Customização da barra de menus do macOS
-cask "spark"                 # Cliente de email
+cask "Spark "                 # Cliente de email
 cask "chatgpt"               # Cliente desktop para ChatGPT
 
 # =====================================================

@@ -1,9 +1,10 @@
+fnm env | source
 # ~/.config/fish/config.fish
 # Configuração otimizada para desenvolvimento
 
 # ===== CONFIGURAÇÕES BÁSICAS =====
-set -U fish_greeting ""  # Remove a mensagem de boas-vindas
-set -U fish_history main  # Histórico compartilhado entre sessões
+set -gx fish_greeting ""  # Remove a mensagem de boas-vindas
+set -gx fish_history main  # Histórico compartilhado entre sessões
 
 # ===== PATH E VARIÁVEIS DE AMBIENTE =====
 # Homebrew
@@ -30,14 +31,6 @@ starship init fish | source
 zoxide init fish | source
 alias cd='z'  # Substitui cd pelo z do zoxide
 
-# NVM (Node Version Manager)
-if test -d $HOME/.nvm
-    set -gx NVM_DIR $HOME/.nvm
-    # Carregamento sob demanda para melhorar performance
-    function nvm
-        bass source $NVM_DIR/nvm.sh --no-use ';' nvm $argv
-    end
-end
 
 # ===== ALIASES =====
 # Git
