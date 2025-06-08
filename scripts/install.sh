@@ -26,6 +26,10 @@ show_menu() {
 install_homebrew() {
   echo "📦 Instalando Homebrew (se necessário)..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "📚 Adicionando Homebrew ao PATH..."
+  echo >> /Users/clebersancs/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/clebersancs/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
   echo "📚 Instalando pacotes via Brewfile..."
   brew bundle --file=./Brewfile
 }
