@@ -9,7 +9,7 @@ show_menu() {
   echo ""
   echo "1) 🍺 Homebrew e pacotes básicos (obrigatório)"
   echo "2) 🐟 Fish Shell e configurações de terminal"
-  echo "3) 🟩 Node.js, NVM e ferramentas JavaScript"
+  echo "3) 🟩 Node.js com FNM (escolha da versão)"
   echo "4) 🔐 Git e configurações"
   echo "5) ☁️ Ferramentas AWS (AWS CLI, CDK, SAM, Amplify)"
   echo "6) 🔄 Backup das configurações atuais"

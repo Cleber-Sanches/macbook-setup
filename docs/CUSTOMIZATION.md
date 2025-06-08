@@ -16,6 +16,43 @@ Opções disponíveis:
 5. Ferramentas AWS (AWS CLI, CDK, SAM, Amplify)
 6. Backup das configurações atuais
 
+## Node.js e FNM
+
+O script permite escolher a versão do Node.js durante a instalação:
+
+1. **Opções disponíveis**:
+   - Node.js LTS (recomendado para a maioria dos projetos)
+   - Node.js mais recente (última versão estável)
+   - Node.js 20.x (versão atual LTS)
+   - Node.js 18.x (suporte de longo prazo)
+   - Node.js 16.x (versão anterior LTS)
+   - Node.js 14.x (versão legada)
+   - Versão personalizada (especifique qualquer versão)
+
+2. **Gerenciamento de versões**:
+   Após a instalação, você pode gerenciar suas versões do Node.js com os seguintes comandos:
+   ```bash
+   # Listar versões instaladas
+   fnm list
+   
+   # Instalar uma nova versão
+   fnm install 16
+   
+   # Usar uma versão específica
+   fnm use 14
+   
+   # Definir uma versão como padrão
+   fnm default 18
+   ```
+
+3. **Pacotes globais**:
+   O script instala automaticamente os seguintes pacotes globais:
+   - npm (última versão)
+   - yarn
+   - pnpm
+   - typescript
+   - ts-node
+
 ## Starship Prompt
 
 O arquivo `config/starship.toml` contém a configuração do prompt. Você pode:
