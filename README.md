@@ -1,11 +1,10 @@
 # 🍎 MacBook Setup - Desenvolvedor Backend
+
 Guia completo para configurar automaticamente meu ambiente após formatação do MacBook Pro.
 
 ![GitHub stars](https://img.shields.io/github/stars/seu-usuario/macbook-setup?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/seu-usuario/macbook-setup?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/seu-usuario/macbook-setup)
-
-
 
 ## 🚀 Início Rápido
 
@@ -23,33 +22,53 @@ Este projeto automatiza a configuração completa de um ambiente de desenvolvime
 2. **Configuração do Terminal**: Fish Shell com Starship prompt, aliases úteis e plugins
 3. **Aplicativos de Desenvolvimento**: VS Code, iTerm2, Insomnia, Docker Desktop
 4. **Aplicativos de Produtividade**: Notion, Slack, Arc Browser, Raycast
-5. **Dotfiles**: Configurações pré-otimizadas para Git, Fish, Starship e mais
-6. **Backup Automático**: Preservação das configurações existentes antes da instalação
-7. **Atualizações Automáticas**: Manutenção programada de todas as ferramentas
+5. **Aplicativos Adicionais**: Menu interativo para escolher aplicativos extras por categoria
+6. **Dotfiles**: Configurações pré-otimizadas para Git, Fish, Starship e mais
+7. **Backup Automático**: Preservação das configurações existentes antes da instalação
+8. **Atualizações Automáticas**: Manutenção programada de todas as ferramentas
 
 ## ✅ Aplicativos e Ferramentas Instaladas
 
 ### Terminal & CLI
+
 - **Shell**: Fish, Starship, Zoxide, Fzf
 - **Git**: Lazygit, GitHub CLI
 - **Editores**: VS Code
 - **Utilitários**: Ripgrep, Bat, Jq, Httpie, Fd, Tree, Htop, Tldr
 
 ### Desenvolvimento
+
 - **Node.js**: via NVM
 - **Containers**: Docker, Docker Compose
 - **Banco de Dados**: Beekeeper Studio
 - **API**: Insomnia, Apidog
 
 ### Cloud & IaC
+
 - **AWS**: AWS CLI, CDK, SAM CLI, Amplify
 - **Terraform**: Terraform CLI
 
 ### Produtividade
+
 - **Navegador**: Arc Browser
 - **Notas**: Notion
 - **Comunicação**: Slack, Spark
 - **Utilitários**: Raycast, Swiftbar, Focus To-Do
+
+### Aplicativos Adicionais (Opcional)
+
+O setup inclui um menu interativo para instalar aplicativos adicionais organizados por categorias:
+
+- **💬 Comunicação**: Discord, Telegram, WhatsApp, Microsoft Teams, Skype
+- **🎵 Mídia**: Spotify, VLC, HandBrake, OBS Studio, Audacity, DaVinci Resolve
+- **🎨 Design**: GIMP, Inkscape, Blender, Krita, Figma, Affinity Suite
+- **🎮 Jogos**: Steam, Epic Games, Minecraft, Battle.net, Origin
+- **🛠️ Desenvolvimento**: Postman, TablePlus, Sequel Pro, ngrok, Charles Proxy
+- **🔒 Segurança**: Kali Linux, Nmap, Wireshark, Burp Suite, Metasploit
+- **🖥️ Virtualização**: VirtualBox, Parallels, VMware, Docker Desktop
+- **☁️ Cloud/DevOps**: Kubernetes, Terraform, Ansible, Helm, Istio
+- **📊 Monitoramento**: Prometheus, Grafana, Elasticsearch, Kibana
+- **🗄️ Bancos de Dados**: Redis, PostgreSQL, MySQL, MongoDB, Neo4j
 
 ## 🗂 Estrutura do Repositório
 
@@ -73,6 +92,7 @@ macbook-setup/
     ├── setup-node.sh        # Configuração do Node.js
     ├── setup-git.sh         # Configuração do Git
     ├── setup-aws.sh         # Configuração das ferramentas AWS
+    ├── setup-additional-apps.sh # Menu de aplicativos adicionais
     ├── backup.sh            # Backup das configurações existentes
     └── update.sh            # Atualização automática das ferramentas
 ```
@@ -84,6 +104,7 @@ Para informações mais detalhadas, consulte:
 - [📘 Guia de Uso](docs/USAGE.md) - Como usar as ferramentas instaladas
 - [🎨 Personalização](docs/CUSTOMIZATION.md) - Como personalizar seu ambiente
 - [🔧 Solução de Problemas](docs/TROUBLESHOOTING.md) - Resolução de problemas comuns
+- [📱 Aplicativos Adicionais](docs/ADDITIONAL_APPS.md) - Guia completo dos aplicativos opcionais
 
 ## 🧼 Pós-Instalação
 
@@ -105,9 +126,10 @@ Este projeto inclui funcionalidades completas de backup e restauração:
 ```
 
 Você também pode acessar essas funções através do menu interativo:
+
 ```bash
 ./scripts/install.sh
-# Selecione a opção 6 para backup ou 7 para restauração
+# Selecione a opção 7 para backup ou 8 para restauração
 ```
 
 Os backups são armazenados no diretório `backups/` do projeto, com timestamps para fácil identificação.

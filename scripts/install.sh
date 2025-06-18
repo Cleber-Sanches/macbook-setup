@@ -12,10 +12,11 @@ show_menu() {
   echo "3) 🟩 Node.js com FNM (escolha da versão)"
   echo "4) 🔐 Git e configurações"
   echo "5) ☁️ Ferramentas AWS (AWS CLI, CDK, SAM, Amplify)"
-  echo "6) 🔄 Backup das configurações atuais"
-  echo "7) 🔙 Restaurar a partir de um backup"
-  echo "8) 🔄 Backup das configurações do n8n"
-  echo "9) 🔙 Restaurar configurações do n8n"
+  echo "6) 📱 Aplicativos Adicionais (escolha personalizada)"
+  echo "7) 🔄 Backup das configurações atuais"
+  echo "8) 🔙 Restaurar a partir de um backup"
+  echo "9) 🔄 Backup das configurações do n8n"
+  echo "10) 🔙 Restaurar configurações do n8n"
   echo ""
   echo "a) ✅ Instalar tudo"
   echo "q) ❌ Sair"
@@ -60,6 +61,13 @@ setup_aws() {
   echo "☁️ Configurando ferramentas AWS..."
   chmod +x scripts/setup-aws.sh
   ./scripts/setup-aws.sh
+}
+
+# Função para instalar aplicativos adicionais
+setup_additional_apps() {
+  echo "📱 Configurando aplicativos adicionais..."
+  chmod +x scripts/setup-additional-apps.sh
+  ./scripts/setup-additional-apps.sh
 }
 
 # Função para fazer backup
@@ -177,10 +185,11 @@ while true; do
     3) setup_node ;;
     4) setup_git ;;
     5) setup_aws ;;
-    6) backup_configs ;;
-    7) restore_configs ;;
-    8) backup_n8n ;;
-    9) restore_n8n ;;
+    6) setup_additional_apps ;;
+    7) backup_configs ;;
+    8) restore_configs ;;
+    9) backup_n8n ;;
+    10) restore_n8n ;;
     a) 
       backup_configs
       install_homebrew
@@ -188,6 +197,7 @@ while true; do
       setup_node
       setup_git
       setup_aws
+      setup_additional_apps
       echo "✅ Setup completo finalizado com sucesso!"
       break
       ;;
